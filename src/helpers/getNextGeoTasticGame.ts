@@ -13,6 +13,17 @@ const gameDates: {[weekDay: number]: {hour:number, minutes:number}[]} = {
     ]
 };
 
+const getAmountOfDaysBetween = (fromDay: DAYS_OF_WEEK, toDay: DAYS_OF_WEEK): number => {
+    let amountOfDays = -1;
+    let currentDay = fromDay;
+    for (let i = 0; i < Object.keys(DAYS_OF_WEEK).length; i++) {
+        if (currentDay === toDay) {
+            
+        }
+    }
+    return amountOfDays;
+}
+
 const getNextGame = () => {
     const currentTime = new Date();
     let gameDate = new Date();
@@ -28,6 +39,7 @@ const getNextGame = () => {
                 nextStartingTime = time;
             }
             if (nextStartingTime !== null) break;
+            else continue;
         }
         
     }
