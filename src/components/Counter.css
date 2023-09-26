@@ -1,0 +1,9 @@
+.counterDiv {
+    color: white;
+    display: flex;
+    flex-direction: "row";
+}
+
+.countItem {
+    margin: 50px;
+}
