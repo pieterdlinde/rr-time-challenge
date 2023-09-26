@@ -1,24 +1,22 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import "./Counter.css";
+import {getNextGame} from "../helpers/getNextGeoTasticGame";
+import { Timer } from "../types/Timer";
+import { TimeDurations } from "../consts/TimeDurations";
 
-type Timer = {
-    days: number,
-    hours: number,
-    minutes: number,
-    seconds: number
-}
+
 
 const Counter = () => {
     const [date, setDate] = useState(new Date(new Date().getTime() + 100000));
     const [counterDown, setCountDown] = useState({days: 0, hours: 0, minutes: 0, seconds: 0});
 
-    const getDifferenceInTime = (): Timer => {
+    const getDifferenceInTime = useCallback((): Timer => {
         const t = date.valueOf() - new Date().getTime();
 
-        let days = Math.floor(t / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((t % (1000 * 60)) / 1000);
+        let days = Math.floor(t / TimeDurations.day);
+        let hours = Math.floor((t % TimeDurations.day) / TimeDurations.hour);
+        let minutes = Math.floor((t % TimeDurations.hour) / TimeDurations.minute);
+        let seconds = Math.floor((t % TimeDurations.minute) / TimeDurations.second);
 
         if (days < 0) days = 0;
         if (hours < 0) hours = 0;
@@ -31,15 +29,16 @@ const Counter = () => {
             minutes,
             seconds
         };
-    }
+    }, []);
 
     useEffect(() => {
+        getNextGame();
         const i = setInterval(() => {
             setCountDown(getDifferenceInTime());
         }, 100);
 
         return () => clearInterval(i);
-    });
+    }, [date, getDifferenceInTime]);
 
     return (
         <div className="counterDiv">
