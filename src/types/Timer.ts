@@ -1,6 +1,14 @@
 export type Timer = {
-    days: number,
-    hours: number,
-    minutes: number,
-    seconds: number
+    days: DoubleNumberChar,
+    hours: DoubleNumberChar,
+    minutes: DoubleNumberChar,
+    seconds: DoubleNumberChar
 }
+
+export type DoubleNumberChar = [NumberChar, NumberChar]
+
+// export const validDoubleChar = ()
+
+export type NumberChar = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
+
+export const charIsNumberChar = (char: string): boolean => !isNaN(Number.parseInt(char)) && /^\d$/.test(char);

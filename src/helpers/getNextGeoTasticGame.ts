@@ -33,6 +33,10 @@ const gameDates: GameDate = {
       minutes: 40,
     },
     {
+      hour: 15,
+      minutes: 30
+    },
+    {
       hour: 16,
       minutes: 30,
     },
