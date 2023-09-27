@@ -2,25 +2,30 @@
     color: white;
     display: flex;
     flex-direction: "row";
+    align-items: center;
+    justify-content: center;
 }
 
 .countItem {
     flex: 1;
-    margin: 50px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card {
-    position: relative;
-    background-color: white;
+    width: 6vw;
+    height: 10vh;
+    display: block;
+    flex: 1;
 }
 
 .card span {
-    position: absolute;
     color: black;
     font-size: 48px;
     font-weight: bold;
-    padding: 10px 15px;
+    position: relative;
+    padding: 10px;
 }
 
 .card span.top {
@@ -28,6 +33,8 @@
 }
 
 .card span.bottom {
-    background-color: rgb(179, 179, 179);
+    background-color: rgb(218, 218, 218);
+    margin-left: -62.5%;
     clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
+    z-index: 400;
 }
