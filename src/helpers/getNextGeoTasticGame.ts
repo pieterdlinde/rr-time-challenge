@@ -1,48 +1,155 @@
-import { DAYS_OF_WEEK } from "../enums/DaysOfWeek.enum";
+import { TimeDurations } from "../consts/TimeDurations";
+import { DaysOfWeek, DaysOfWeekUtil } from "../enums/DaysOfWeek.enum";
+import {
+  GameDate,
+  GameDateWithAway,
+  GameDateWithAwayAndTime,
+} from "../types/GameDate";
 
-const gameDates: {[weekDay: number]: {hour:number, minutes:number}[]} = {
-    [DAYS_OF_WEEK.MONDAY]: [
-        {
-            hour: 12,
-            minutes: 40
-        },
-        {
-            hour: 16,
-            minutes: 30
-        }
-    ]
+const gameDates: GameDate = {
+  [DaysOfWeek.MONDAY]: [
+    {
+      hour: 12,
+      minutes: 40,
+    },
+    {
+      hour: 16,
+      minutes: 30,
+    },
+  ],
+  [DaysOfWeek.TUESDAY]: [
+    {
+      hour: 12,
+      minutes: 40,
+    },
+    {
+      hour: 16,
+      minutes: 30,
+    },
+  ],
+  [DaysOfWeek.WEDNESDAY]: [
+    {
+      hour: 12,
+      minutes: 40,
+    },
+    {
+      hour: 16,
+      minutes: 30,
+    },
+  ],
+  [DaysOfWeek.THURSDAY]: [
+    {
+      hour: 12,
+      minutes: 40,
+    },
+    {
+      hour: 16,
+      minutes: 30,
+    },
+  ],
+  [DaysOfWeek.FRIDAY]: [
+    {
+      hour: 12,
+      minutes: 40,
+    },
+    {
+      hour: 16,
+      minutes: 30,
+    },
+  ],
 };
 
-const getAmountOfDaysBetween = (fromDay: DAYS_OF_WEEK, toDay: DAYS_OF_WEEK): number => {
-    let amountOfDays = -1;
-    let currentDay = fromDay;
-    for (let i = 0; i < Object.keys(DAYS_OF_WEEK).length; i++) {
-        if (currentDay === toDay) {
-            
-        }
+const getAmountOfDaysBetween = (
+  fromDay: DaysOfWeek,
+  toDay: DaysOfWeek
+): number => {
+  let amountOfDays = -1;
+  let currentDay = fromDay;
+  for (const _ of Object.keys(DaysOfWeek)) {
+    amountOfDays++;
+    if (currentDay === toDay) {
+      return amountOfDays;
     }
-    return amountOfDays;
-}
+    currentDay = DaysOfWeekUtil.getNextDay(currentDay);
+  }
+  return amountOfDays;
+};
 
-const getNextGame = () => {
-    const currentTime = new Date();
-    let gameDate = new Date();
-    const currentDay = currentTime.getDay();
-    const gameDays = Object.keys(gameDates);
-    let nextStartingTime: {hour:number, minutes:number} | null = null;
-    for (const day of gameDays) {
-        const d = Number.parseInt(day);
-        if (d === currentDay) {
-            for (const time of gameDates[d]) {
-                if (time.hour > currentTime.getHours() && time.minutes > currentTime.getMinutes()) continue;
-                if (!(nextStartingTime !== null && (time.hour < nextStartingTime.hour || (time.hour === nextStartingTime.hour && time.minutes < nextStartingTime.minutes)))) continue;
-                nextStartingTime = time;
-            }
-            if (nextStartingTime !== null) break;
-            else continue;
-        }
-        
+const getLowestDaysAway = (
+  gameDates: GameDateWithAway
+): GameDateWithAwayAndTime[] => {
+  const values = Object.values(gameDates);
+
+  values.sort((a, b) => a.daysAway - b.daysAway);
+
+  return values;
+};
+
+const getNextGame = (): Date | null => {
+  const currentTime = new Date();
+  const today = DaysOfWeekUtil.getDayFromIndex(currentTime.getDay());
+  const awayList: GameDateWithAway = {};
+  for (const day of Object.keys(gameDates)) {
+    const d = Number.parseInt(day);
+    const enumDay = DaysOfWeekUtil.getDayFromIndex(d);
+    const daysAway = getAmountOfDaysBetween(today, enumDay);
+    if (!Object.keys(awayList).includes(day)) {
+      awayList[d] = {
+        day: DaysOfWeekUtil.getDayFromIndex(d),
+        daysAway,
+        gameTimes: gameDates[Number(day)],
+      };
     }
-}
+  }
+  const days = getLowestDaysAway(awayList);
+  let nextGame: GameDateWithAwayAndTime | null = null;
+  for (const day of days) {
+    for (const times of day.gameTimes) {
+      if (day.day === today) {
+        if (
+          nextGame === null &&
+          (times.hour > currentTime.getHours() ||
+            (times.hour === currentTime.getHours() &&
+              times.minutes > currentTime.getMinutes()))
+        ) {
+          nextGame = {
+            day: day.day,
+            daysAway: day.daysAway,
+            gameTimes: [times],
+          };
+          continue;
+        }
+      } else {
+        if (nextGame === null) {
+          nextGame = {
+            day: day.day,
+            daysAway: day.daysAway,
+            gameTimes: [times],
+          };
+          continue;
+        }
+        if (
+          nextGame !== null &&
+          (times.hour < nextGame.gameTimes[0].hour ||
+            (times.hour === nextGame.gameTimes[0].hour &&
+              times.minutes < nextGame.gameTimes[0].minutes))
+        ) {
+          nextGame.gameTimes = [times];
+        }
+      }
+    }
+    if (nextGame !== null) break;
+  }
+  if (nextGame !== null) {
+    const nextDate = new Date(
+      new Date().getTime() + TimeDurations.day * nextGame.daysAway
+    );
+    nextDate.setHours(nextGame.gameTimes[0].hour);
+    nextDate.setMinutes(nextGame.gameTimes[0].minutes);
+    nextDate.setSeconds(0);
+    return nextDate;
+  }
+  return null;
+};
 
-export {getNextGame, DAYS_OF_WEEK};
+export { getNextGame, DaysOfWeek };
