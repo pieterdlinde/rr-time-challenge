@@ -59,10 +59,50 @@ const Counter = () => {
 
     return (
         <div className="counterDiv">
-            <div className="countItem">{counterDown.days}</div>
-            <div className="countItem">{counterDown.hours}</div>
-            <div className="countItem">{counterDown.minutes}</div>
-            <div className="countItem">{counterDown.seconds}</div>
+            <div className="countItem">
+                <p>Days</p>
+                <div className="card">
+                    <span className="top">{counterDown.days[0]}</span>
+                    <span className="bottom">{counterDown.days[0]}</span>
+                </div>
+                <div className="card">
+                    <span className="top">{counterDown.days[1]}</span>
+                    <span className="bottom">{counterDown.days[1]}</span>
+                </div>
+            </div>
+            <div className="countItem">
+                <p>Hours</p>
+                <div className="card">
+                    <span className="top">{counterDown.hours[0]}</span>
+                    <span className="bottom">{counterDown.hours[0]}</span>
+                </div>
+                <div className="card">
+                    <span className="top">{counterDown.hours[1]}</span>
+                    <span className="bottom">{counterDown.hours[1]}</span>
+                </div>
+            </div>
+            <div className="countItem">
+                <p>Minutes</p>
+                <div className="card">
+                    <span className="top">{counterDown.minutes[0]}</span>
+                    <span className="bottom">{counterDown.minutes[0]}</span>
+                </div>
+                <div className="card">
+                    <span className="top">{counterDown.minutes[1]}</span>
+                    <span className="bottom">{counterDown.minutes[1]}</span>
+                </div>
+            </div>
+            <div className="countItem">
+                <p>Seconds</p>
+                <div className="card">
+                    <span className="top">{counterDown.seconds[0]}</span>
+                    <span className="bottom">{counterDown.seconds[0]}</span>
+                </div>
+                <div className="card">
+                    <span className="top">{counterDown.seconds[1]}</span>
+                    <span className="bottom">{counterDown.seconds[1]}</span>
+                </div>
+            </div>
         </div>
     )
 }

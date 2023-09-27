@@ -7,4 +7,27 @@
 .countItem {
     flex: 1;
     margin: 50px;
+
+}
+
+.card {
+    position: relative;
+    background-color: white;
+}
+
+.card span {
+    position: absolute;
+    color: black;
+    font-size: 48px;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+
+.card span.top {
+    background-color: white;
+}
+
+.card span.bottom {
+    background-color: rgb(179, 179, 179);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
 }
