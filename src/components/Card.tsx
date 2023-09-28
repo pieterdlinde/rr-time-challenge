@@ -17,7 +17,7 @@ const Card = forwardRef(({number}: CardProps, ref) => {
 
     return (
         <div className="card">
-            <span className="top">{number}</span>
+            <span className="top animate">{number}</span>
             <span className="bottom">{number}</span>
         </div>
     )
