@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto'), url(../fonts/Roboto/Roboto-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Athletic';
+    src: local('Athletic') url(../fonts/Atheletic/NewAthleticM54-31vz.ttf) format('truetype');
+}
+
+.card {
+    margin: 20px;
+    padding: 10px;
+    position: relative;
+}
+
+.card span {
+    font-size: 48px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    color: black;
+    font-weight: bold;
+    font-family: 'Athletic', Arial, Helvetica, sans-serif;
+}
+
+.card span.top {
+    background-color: rgb(230,230,230);
+}
+
+.card span.bottom {
+    background-color: rgb(255, 255, 255);
+    clip-path: polygon(100% 100%, 100% 50%, 0% 50%, 0% 100%);
+}

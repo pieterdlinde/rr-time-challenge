@@ -1,40 +1,11 @@
 .counterDiv {
+    flex: 1;
+    justify-content: space-evenly;
     color: white;
     display: flex;
-    flex-direction: "row";
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
 }
 
-.countItem {
-    flex: 1;
+.doublecard {
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.card {
-    width: 6vw;
-    height: 10vh;
-    display: block;
-    flex: 1;
-}
-
-.card span {
-    color: black;
-    font-size: 48px;
-    font-weight: bold;
-    position: relative;
-    padding: 10px;
-}
-
-.card span.top {
-    background-color: white;
-}
-
-.card span.bottom {
-    background-color: rgb(218, 218, 218);
-    margin-left: -62.5%;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
-    z-index: 400;
 }

@@ -3,6 +3,7 @@ import "./Counter.css";
 import {getNextGame} from "../helpers/getNextGeoTasticGame";
 import { DoubleNumberChar, Timer, NumberChar } from "../types/Timer";
 import { TimeDurations } from "../consts/TimeDurations";
+import Card from "./Card";
 
 const convertNumberToTwoDigits = (number: number): DoubleNumberChar => {
     const numberString = number.toString().padStart(2, "0").split("");
@@ -59,49 +60,21 @@ const Counter = () => {
 
     return (
         <div className="counterDiv">
-            <div className="countItem">
-                <p>Days</p>
-                <div className="card">
-                    <span className="top">{counterDown.days[0]}</span>
-                    <span className="bottom">{counterDown.days[0]}</span>
-                </div>
-                <div className="card">
-                    <span className="top">{counterDown.days[1]}</span>
-                    <span className="bottom">{counterDown.days[1]}</span>
-                </div>
+            <div className="doublecard days">
+                <Card number={counterDown.days[0]} />
+                <Card number={counterDown.days[1]} />
             </div>
-            <div className="countItem">
-                <p>Hours</p>
-                <div className="card">
-                    <span className="top">{counterDown.hours[0]}</span>
-                    <span className="bottom">{counterDown.hours[0]}</span>
-                </div>
-                <div className="card">
-                    <span className="top">{counterDown.hours[1]}</span>
-                    <span className="bottom">{counterDown.hours[1]}</span>
-                </div>
+            <div className="doublecard hours">
+                <Card number={counterDown.hours[0]} />
+                <Card number={counterDown.hours[1]} />
             </div>
-            <div className="countItem">
-                <p>Minutes</p>
-                <div className="card">
-                    <span className="top">{counterDown.minutes[0]}</span>
-                    <span className="bottom">{counterDown.minutes[0]}</span>
-                </div>
-                <div className="card">
-                    <span className="top">{counterDown.minutes[1]}</span>
-                    <span className="bottom">{counterDown.minutes[1]}</span>
-                </div>
+            <div className="doublecard minutes">
+                <Card number={counterDown.minutes[0]} />
+                <Card number={counterDown.minutes[1]} />
             </div>
-            <div className="countItem">
-                <p>Seconds</p>
-                <div className="card">
-                    <span className="top">{counterDown.seconds[0]}</span>
-                    <span className="bottom">{counterDown.seconds[0]}</span>
-                </div>
-                <div className="card">
-                    <span className="top">{counterDown.seconds[1]}</span>
-                    <span className="bottom">{counterDown.seconds[1]}</span>
-                </div>
+            <div className="doublecard seconds">
+                <Card number={counterDown.seconds[0]} />
+                <Card number={counterDown.seconds[1]} />
             </div>
         </div>
     )
