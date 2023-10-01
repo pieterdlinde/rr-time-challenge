@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import "./Clock.css";
+import "./Clock.scss";
 import $ from 'jquery';
 
 function Clock() {
     const [date, setDate] = useState(new Date());
-    const [currentSeconds, getSecondsToday] = useState(Number);
-    var seconds = (currentSeconds / 60) % 1;
-    var minutes = (currentSeconds / 3600) % 1;
-    var hours = (currentSeconds / 43200) % 1;
+    const currentSeconds = getSecondsToday();
+    const seconds = (currentSeconds / 60) % 1;
+    const minutes = (currentSeconds / 3600) % 1;
+    const hours = (currentSeconds / 43200) % 1;
 
     setTime(60 * seconds, "second");
     setTime(3600 * minutes, "minute");
@@ -23,83 +23,83 @@ function Clock() {
 
       return (
         <div className="clock">
-            <div className="clockSecond"></div>
-            <div className="clockMinute"></div>
-            <div className="clockHour"></div>
-            <div className="clockAxis"></div>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <section className="clockIndicator"></section>
-            <span>{date.toLocaleTimeString()}</span>
+            <div className="clock__second"></div>
+            <div className="clock__minute"></div>
+            <div className="clock__hour"></div>
+            <div className="clock__axis"></div>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            <section className="clock__indicator"></section>
+            {/* <span>{date.toLocaleTimeString()}</span> */}
         </div>
       )
 }
 
 function getSecondsToday() {
-    let now = new Date();
-  
-    let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  
-    let seconds = today.getSeconds();
-    return Math.round(seconds);
-  }
+  let now = new Date();
+
+  let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  let diff = now.valueOf() - today.valueOf();
+  return Math.round(diff / 1000);
+}
 
   function setTime(left:number, hand:string) {
     $(".clock__" + hand).css("animation-delay", "" + left * -1 + "s");
