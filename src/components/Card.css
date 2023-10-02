@@ -27,10 +27,11 @@
 
 .card span.top {
     background-color: rgb(230,230,230);
+    clip-path: polygon(0% 0%, 0% 50%, 100% 50%, 100% 0%);
 }
 
 .card span.top.animate {
-    animation: flipCard 0.5s
+    animation: flipCard 0.5s ;
 }
 
 .card span.bottom {
@@ -40,12 +41,12 @@
 
 @keyframes flipCard {
     0% {
-        transform: rotateX( 0deg ) scale(1)
+        transform: rotateX( 0deg )
     }
     50% {
-        transform: rotateX( 180deg ) scale(1)
+        background-color: aquamarine;
     }
     100% {
-        transform: rotateX( 360deg ) scale(1)
+        transform: rotateX( 180deg )
     }
 }
