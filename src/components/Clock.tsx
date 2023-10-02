@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react';
 import "./Clock.scss";
 import $ from 'jquery';
 
 function Clock() {
+    //const [date, setDate] = useState(new Date());
     const currentSeconds = getSecondsToday();
     const seconds = (currentSeconds / 60) % 1;
     const minutes = (currentSeconds / 3600) % 1;
@@ -10,6 +12,13 @@ function Clock() {
     setTime(60 * seconds, "second");
     setTime(3600 * minutes, "minute");
     setTime(43200 * hours, "hour");
+
+    useEffect(() => {
+      const clock = setInterval(() => getSecondsToday(), 1000)
+      return function cleanup() {
+        clearInterval(clock)
+      }
+    });
 
       return (
         <div className="clock">
