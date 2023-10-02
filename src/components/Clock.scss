@@ -43,31 +43,31 @@ p {
       border-radius: 1px;
     }
     &__second {
-      height: (200px / 2) - 10;
+      height: calc(200px / 2) - 10;
       margin-top: 10px;
       background: #4b9aaa;
       animation: time 60s infinite steps(60);
       z-index: 3;
     }
     &__minute {
-      height: (200px / 2) - 20;
+      height: calc(200px / 2) - 20;
       margin-top: 20px;
       opacity: 0.75;
       animation: time 3600s linear infinite;
     }
     &__hour {
-      height: (200px / 2) - 40;
+      height: calc(200px / 2) - 40;
       margin-top: 40px;
       animation: time 43200s linear infinite;
     }
     &__indicator {
-      height: (200px / 2) - 2;
+      height: calc(200px / 2) - 2;
       border-top: 2px solid #4b9aaa;
       background: none;
     }
     &__indicator:nth-of-type(5n) {
       opacity: 1;
-      height: (200px / 2) - 7;
+      height: calc(200px / 2) - 7;
       border-top: 7px solid #f4eed7;
     }
     &__axis {
@@ -77,7 +77,7 @@ p {
       border-radius: 3px;
       position: absolute;
       z-index: 4;
-      top: 200px / 2 - 3;
+      top: calc(200px / 2) - 3;
       
     }
   }

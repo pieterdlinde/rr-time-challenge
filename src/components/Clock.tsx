@@ -1,23 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import "./Clock.scss";
 import $ from 'jquery';
 
 function Clock() {
-    //const [date, setDate] = useState(new Date());
-    const currentSeconds = getSecondsToday();
-    const seconds = (currentSeconds / 60) % 1;
-    const minutes = (currentSeconds / 3600) % 1;
-    const hours = (currentSeconds / 43200) % 1;
-
-    setTime(60 * seconds, "second");
-    setTime(3600 * minutes, "minute");
-    setTime(43200 * hours, "hour");
-
     useEffect(() => {
-      const clock = setInterval(() => getSecondsToday(), 1000)
-      return function cleanup() {
-        clearInterval(clock)
-      }
+      const clock = setInterval(() => 
+      {
+        const currentSeconds = getSecondsToday();
+        const seconds = (currentSeconds / 60) % 1;
+        const minutes = (currentSeconds / 3600) % 1;
+        const hours = (currentSeconds / 43200) % 1;
+  
+        setTime(60 * seconds, "second");
+        setTime(3600 * minutes, "minute");
+        setTime(43200 * hours, "hour");
+      }, 1000);
+      return () => clearInterval(clock);
     });
 
       return (
@@ -99,8 +97,8 @@ function getSecondsToday() {
   return Math.round(diff / 1000);
 }
 
-  function setTime(left:number, hand:string) {
-    $(".clock__" + hand).css("animation-delay", "" + left * -1 + "s");
-  }
+function setTime(left:number, hand:string) {
+  $(".clock__" + hand).css("animation-delay", "" + left * -1 + "s");
+}
 
 export default Clock;
