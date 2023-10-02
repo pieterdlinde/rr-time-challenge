@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from "react"
 import "./Counter.css";
 import {getNextGame} from "../helpers/getNextGeoTasticGame";
 import { DoubleNumberChar, Timer, NumberChar } from "../types/Timer";
+import { ChangedTime } from "../types/ChangedTime";
 import { TimeDurations } from "../consts/TimeDurations";
 import Card from "./Card";
 
@@ -17,7 +18,14 @@ const Counter = () => {
         hours: convertNumberToTwoDigits(0),
         minutes: convertNumberToTwoDigits(0),
         seconds: convertNumberToTwoDigits(0)
-    });
+    } as Timer);
+
+    const [changedNumber, setChangedNumber] = useState({
+        days: [false, false],
+        hours: [false, false],
+        minutes: [false, false],
+        seconds: [false, false],
+    } as ChangedTime)
 
     const getDifferenceInTime = useCallback((): Timer => {
         if (date !== null) {
@@ -53,7 +61,35 @@ const Counter = () => {
 
     useEffect(() => {
         const i = setInterval(() => {
+            const difference = getDifferenceInTime();
+            const currentDifference = counterDown;
+            const changed: ChangedTime = {
+                days: [false, false],
+                hours: [false, false],
+                minutes: [false, false],
+                seconds: [false, false],
+            }
+
+            if (difference.days[0] !== currentDifference.days[0]) changed.days[0] = true;
+            if (difference.days[1] !== currentDifference.days[1]) changed.days[1] = true;
+
+            if (difference.hours[0] !== currentDifference.hours[0]) changed.hours[0] = true;
+            if (difference.hours[1] !== currentDifference.hours[1]) changed.hours[1] = true;
+
+            if (difference.minutes[0] !== currentDifference.minutes[0]) changed.minutes[0] = true;
+            if (difference.minutes[1] !== currentDifference.minutes[1]) changed.minutes[1] = true;
+
+            if (difference.seconds[0] !== currentDifference.seconds[0]) changed.seconds[0] = true;
+            if (difference.seconds[1] !== currentDifference.seconds[1]) changed.seconds[1] = true;
+
+            setChangedNumber(changed);
             setCountDown(getDifferenceInTime());
+            setTimeout(() => setChangedNumber({
+                days: [false, false],
+                hours: [false, false],
+                minutes: [false, false],
+                seconds: [false, false]
+            }), 500)
         }, 1000);
         return () => clearInterval(i);
     }, [counterDown, getDifferenceInTime]);
@@ -61,20 +97,20 @@ const Counter = () => {
     return (
         <div className="counterDiv">
             <div className="doublecard days">
-                <Card number={counterDown.days[0]} />
-                <Card number={counterDown.days[1]} />
+                <Card number={counterDown.days[0]} showAnimation={changedNumber.days[0]} />
+                <Card number={counterDown.days[1]} showAnimation={changedNumber.days[1]} />
             </div>
             <div className="doublecard hours">
-                <Card number={counterDown.hours[0]} />
-                <Card number={counterDown.hours[1]} />
+                <Card number={counterDown.hours[0]} showAnimation={changedNumber.hours[0]} />
+                <Card number={counterDown.hours[1]} showAnimation={changedNumber.hours[1]} />
             </div>
             <div className="doublecard minutes">
-                <Card number={counterDown.minutes[0]} />
-                <Card number={counterDown.minutes[1]} />
+                <Card number={counterDown.minutes[0]} showAnimation={changedNumber.minutes[0]} />
+                <Card number={counterDown.minutes[1]} showAnimation={changedNumber.minutes[1]} />
             </div>
             <div className="doublecard seconds">
-                <Card number={counterDown.seconds[0]} />
-                <Card number={counterDown.seconds[1]} />
+                <Card number={counterDown.seconds[0]} showAnimation={changedNumber.seconds[0]} />
+                <Card number={counterDown.seconds[1]} showAnimation={changedNumber.seconds[1]} />
             </div>
         </div>
     )
