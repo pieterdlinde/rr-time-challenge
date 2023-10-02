@@ -30,8 +30,8 @@
     clip-path: polygon(0% 0%, 0% 50%, 100% 50%, 100% 0%);
 }
 
-.card span.top.animate {
-    animation: flipCard 0.5s ;
+.card .top-layer span.top.animate {
+    animation: flipCard 0.5s forwards linear;
 }
 
 .card span.bottom {
@@ -39,14 +39,25 @@
     clip-path: polygon(100% 100%, 100% 50%, 0% 50%, 0% 100%);
 }
 
+.card .bottom-layer span.bottom.animate {
+    z-index: 1000;
+    animation: flipCardBottom 0.5s forwards linear;
+}
+
 @keyframes flipCard {
     0% {
-        transform: rotateX( 0deg )
-    }
-    50% {
-        background-color: aquamarine;
+        transform: rotateX( 0deg );
     }
     100% {
-        transform: rotateX( 180deg )
+        transform: rotateX( 90deg )
+    }
+}
+
+@keyframes flipCardBottom {
+    0% {
+        transform: rotateX( -90deg );
+    }
+    100% {
+        transform: rotateX( 0deg );
     }
 }

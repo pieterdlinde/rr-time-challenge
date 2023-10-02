@@ -1,5 +1,5 @@
 import { ClockType } from "../enums/ClockType"
-import { DoubleNumberChar, NumberChar } from "../types/Timer"
+import { DoubleNumberChar, NumberChar, Timer } from "../types/Timer"
 
 const getNewPositiveNumber = (char: NumberChar, resetTo: number): NumberChar => {
     let intNumber = Number.parseInt(char);
@@ -15,15 +15,24 @@ const getNewPositiveNumberFromDouble = (chars: DoubleNumberChar, resetTo: number
     return [firstNumber, newSecondNumber];
 }
 
-export const getOneSecondBelow = (currentTime: DoubleNumberChar, type: ClockType): DoubleNumberChar => {
+const getOneSecondBelow = (currentTime: DoubleNumberChar, type: ClockType): DoubleNumberChar => {
     switch (type) {
         case ClockType.DAY:
             return getNewPositiveNumberFromDouble(currentTime, 9);
         case ClockType.HOUR:
-            return getNewPositiveNumberFromDouble(currentTime, 6);
+            return getNewPositiveNumberFromDouble(currentTime, 5);
         case ClockType.MINUTE:
-            return getNewPositiveNumberFromDouble(currentTime, 6);
+            return getNewPositiveNumberFromDouble(currentTime, 5);
         case ClockType.SECOND:
-            return getNewPositiveNumberFromDouble(currentTime, 6);
+            return getNewPositiveNumberFromDouble(currentTime, 5);
     }
+}
+
+export const getOneSecondBelowTimer = (currentTime: Timer) => {
+    return {
+        days: getOneSecondBelow(currentTime.days, ClockType.DAY),
+        hours: getOneSecondBelow(currentTime.hours, ClockType.HOUR),
+        minutes: getOneSecondBelow(currentTime.minutes, ClockType.MINUTE),
+        seconds: getOneSecondBelow(currentTime.seconds, ClockType.SECOND)
+    };
 }
