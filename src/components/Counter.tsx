@@ -75,31 +75,22 @@ const Counter = () => {
       const difference = getDifferenceInTime();
       const currentDifference = counterDown;
       const changed: ChangedTime = {
-        days: [false, false],
-        hours: [false, false],
-        minutes: [false, false],
-        seconds: [false, false],
+        days: [
+          difference.days[0] !== currentDifference.days[0],
+          difference.days[1] !== currentDifference.days[1]
+        ],
+        hours: [
+          difference.hours[0] !== currentDifference.hours[0],
+          difference.hours[1] !== currentDifference.hours[1]
+        ],
+        minutes: [
+          difference.minutes[0] !== currentDifference.minutes[0],
+          difference.minutes[1] !== currentDifference.minutes[1]
+        ],
+        seconds: [
+          difference.seconds[0] !== currentDifference.seconds[0], 
+          difference.seconds[1] !== currentDifference.seconds[1]]
       };
-
-      if (difference.days[0] !== currentDifference.days[0])
-        changed.days[0] = true;
-      if (difference.days[1] !== currentDifference.days[1])
-        changed.days[1] = true;
-
-      if (difference.hours[0] !== currentDifference.hours[0])
-        changed.hours[0] = true;
-      if (difference.hours[1] !== currentDifference.hours[1])
-        changed.hours[1] = true;
-
-      if (difference.minutes[0] !== currentDifference.minutes[0])
-        changed.minutes[0] = true;
-      if (difference.minutes[1] !== currentDifference.minutes[1])
-        changed.minutes[1] = true;
-
-      if (difference.seconds[0] !== currentDifference.seconds[0])
-        changed.seconds[0] = true;
-      if (difference.seconds[1] !== currentDifference.seconds[1])
-        changed.seconds[1] = true;
 
       setChangedNumber(changed);
 

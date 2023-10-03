@@ -23,6 +23,7 @@
     color: black;
     font-weight: bold;
     font-family: 'Athletic', Arial, Helvetica, sans-serif;
+    border: 1px solid black;
 }
 
 .card span.top {
