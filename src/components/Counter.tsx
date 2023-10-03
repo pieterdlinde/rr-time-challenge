@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import "./Counter.css";
 import { getNextGame } from "../helpers/getNextGeoTasticGame";
-import { DoubleNumberChar, Timer, NumberChar } from "../types/Timer";
+import { DoubleNumberChar, Timer, NumberChar, TimerEquals } from "../types/Timer";
 import { TimeDurations } from "../consts/TimeDurations";
 import Card from "./Card";
 import { getOneSecondBelowTimer } from "../helpers/getOneSecondBelow";
@@ -78,10 +78,11 @@ const Counter = () => {
   useEffect(() => {
     const i = setInterval(() => {
       const difference = getDifferenceInTime();
-
-      setCountDown(difference);
-      setSecondCounterDown(getOneSecondBelowTimer(difference));
-    }, 100);
+      if (!TimerEquals(difference, counterDown)) {
+        setCountDown(difference);
+        setSecondCounterDown(getOneSecondBelowTimer(difference));
+      }
+    }, 10);
     return () => clearInterval(i);
   }, [counterDown, getDifferenceInTime]);
 
