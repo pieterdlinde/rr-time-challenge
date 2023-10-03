@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NumberChar } from "../types/Timer";
 import "./Card.css";
+import { usePrevious } from "../hooks/usePrevious";
 
 type CardProps = {
     number: NumberChar,
     bottomNumber: NumberChar,
-    showAnimation: boolean
 }
 
-const Card = ({number, showAnimation, bottomNumber}: CardProps) => {
+const Card = ({number, bottomNumber}: CardProps) => {
     const [animationStateEnabled, setAnimationStateEnabled] = useState(false);
+    const [animate, setAnimate] = useState(false);
+    const prevNumber = usePrevious(number);
+
+    useEffect(() => {
+        setAnimate(number !== prevNumber)
+        setTimeout(() => setAnimate(false), 750);
+    }, [number])
 
     const endingTopLayerAnimation = () => {
         setAnimationStateEnabled(true)
@@ -27,7 +34,7 @@ const Card = ({number, showAnimation, bottomNumber}: CardProps) => {
             </div>
             <div className="top-layer">
                 <span className="bottom">{number}</span>
-                <span className={`top ${showAnimation ? 'animate' : ''}`} onAnimationEnd={endingTopLayerAnimation}>{animationStateEnabled ? bottomNumber : number}</span>
+                <span className={`top ${animate ? 'animate' : ''}`} onAnimationEnd={endingTopLayerAnimation}>{animationStateEnabled ? bottomNumber : number}</span>
             </div>
         </div>
     )
