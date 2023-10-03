@@ -23,10 +23,12 @@ const DateTime = styled.p`
 // Snake Game Component
 const SnakeGame = () => {
   const [dateTime, setDateTime] = useState(new Date());
-  const [aliveTime, setAliveTime] = useState(0);
+  const [aliveTime, setAliveTime] = useState(new Date());
+  const [startTime, setStartTime] = useState(new Date());
   const canvasRef = useRef(null);
 
   useEffect(() => {
+    setAliveTime(dateTime);
     const canvas = canvasRef.current;
 
     const ctx = canvas.getContext('2d');
@@ -76,21 +78,37 @@ const SnakeGame = () => {
     function handleKeyPress(event: any) {
       switch (event.key) {
         case 'ArrowUp':
-          direction = 'UP';
-          break;
+          if (direction === 'DOWN') {
+            return;
+          } else {
+            direction = 'UP'
+            break;
+          }
         case 'ArrowDown':
-          direction = 'DOWN';
-          break;
+          if (direction === 'UP') {
+            return;
+          } else {
+            direction = 'DOWN';
+            break;
+          }
         case 'ArrowLeft':
-          direction = 'LEFT';
-          break;
+          if (direction === 'RIGHT') {
+            return;
+          } else {
+            direction = 'LEFT';
+            break;
+          }
         case 'ArrowRight':
-          direction = 'RIGHT';
-          break;
+          if (direction === 'LEFT') {
+            return;
+          } else {
+            direction = 'RIGHT';
+            break;
+          }
         default:
           break;
       }
-    }
+    }   
   
     function update() {
       // Update snake position based on the direction
@@ -123,6 +141,7 @@ const SnakeGame = () => {
   if (head.x === food.x && head.y === food.y) {
     snake.unshift({ ...head }); // Add a new segment to the snake
     food = generateFood(); // Generate a new food
+    setAliveTime(new Date());// Update the time
   } else {
     // Check for collisions with the snake itself
     const collided = snake.some((segment) => segment.x === head.x && segment.y === head.y);
@@ -156,7 +175,17 @@ const SnakeGame = () => {
   return (
     <GameContainer>
       <Title>Snake O'Clock</Title>
-      <DateTime>{dateTime.toLocaleString()}</DateTime>  
+      <div className="digital-watch">
+        <span>{aliveTime.getHours() < 10 ? `0${aliveTime.getHours()}` : aliveTime.getHours()}</span>
+        <span className="colon">:</span>
+        <span>{aliveTime.getMinutes() < 10 ? `0${aliveTime.getMinutes()}` : aliveTime.getMinutes()}</span>
+        <span className="colon">:</span>
+        <span>{aliveTime.getSeconds() < 10 ? `0${aliveTime.getSeconds()}` : aliveTime.getSeconds()}</span>
+      </div>
+      <DateTime>{dateTime.getDate()} | {dateTime.getMonth()+1} | {dateTime.getFullYear()}</DateTime> 
+        {/* <Title>Snake O'Clock</Title>
+        <Title>{aliveTime.getHours()}:{aliveTime.getMinutes()}:{aliveTime.getSeconds()}</Title>
+        <DateTime>{dateTime.getDate()} | {dateTime.getMonth()+1} | {dateTime.getFullYear()}</DateTime>   */}
       <canvas ref={canvasRef} width={400} height={400} />
     </GameContainer>
   );

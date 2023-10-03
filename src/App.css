@@ -1,13 +1,54 @@
 /* App.css */
 
 body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #000;
+  color: #0F0; /* Green color for the digits */
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   height: 100vh;
-  background-color: #f8f8f8;
+  margin: 0;
+}
+
+@font-face {
+  font-family: 'DIGITALDREAM';
+  src: url(./Font/DIGITALDREAM.ttf) format('truetype');
+}
+
+.digital-watch {
+  /* font-family: 'Courier New', Courier, monospace; */
+  font-family: 'DIGITALDREAM';
+  font-size: 4em;
+  background-color: #000;
+  color: #0f0;
+  padding: 10px;
+  /* border: 5px solid #333;
+  border-radius: 10px; */
+  display: inline-block;
+  text-align: center;
+  /* box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); */
+}
+
+/* Styling the digits */
+.digital-watch span {
+  padding: 2px;
+  display: inline-block;
+  width: 1em;
+  text-align: center;
+  margin: 5px 5px 5px 5px;
+  font-size: 1em;
+}
+
+/* Styling the blinking colon */
+.digital-watch .colon {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 .GameContainer {
@@ -18,29 +59,6 @@ body {
   font-size: 2rem;
   margin-bottom: 20px;
   color: #333;
-}
-
-.DateTime {
-  font-size: 1.5rem;
-  color: #333;
-  background-color: #ddd;
-  padding: 5px;
-  border-radius: 5px;
-  display: inline-block;
-  letter-spacing: 4px;
-}
-
-/* Optional: Animate the blinking colon */
-.DateTime::after {
-  content: ':';
-  display: inline-block;
-  animation: blink 1s infinite step-start;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
 }
 
 canvas {
