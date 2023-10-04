@@ -3,8 +3,8 @@ import { DoubleNumberChar, NumberChar, Timer } from "../types/Timer"
 
 const getNewPositiveNumber = (char: NumberChar, resetTo: number): NumberChar => {
     let intNumber = Number.parseInt(char);
-    intNumber--;
-    if (intNumber < 0) intNumber = resetTo;
+    intNumber++;
+    if (intNumber > resetTo) intNumber = 0;
     return String(intNumber) as NumberChar;
 }
 
@@ -15,7 +15,7 @@ const getNewPositiveNumberFromDouble = (chars: DoubleNumberChar, resetTo: number
     return [firstNumber, newSecondNumber];
 }
 
-const getOneSecondBelow = (currentTime: DoubleNumberChar, type: ClockType): DoubleNumberChar => {
+const getOneSecondAbove = (currentTime: DoubleNumberChar, type: ClockType): DoubleNumberChar => {
     switch (type) {
         case ClockType.DAY:
             return getNewPositiveNumberFromDouble(currentTime, 9);
@@ -28,11 +28,11 @@ const getOneSecondBelow = (currentTime: DoubleNumberChar, type: ClockType): Doub
     }
 }
 
-export const getOneSecondBelowTimer = (currentTime: Timer) => {
+export const getOneSecondAboveTimer = (currentTime: Timer) => {
     return {
-        days: getOneSecondBelow(currentTime.days, ClockType.DAY),
-        hours: getOneSecondBelow(currentTime.hours, ClockType.HOUR),
-        minutes: getOneSecondBelow(currentTime.minutes, ClockType.MINUTE),
-        seconds: getOneSecondBelow(currentTime.seconds, ClockType.SECOND)
+        days: getOneSecondAbove(currentTime.days, ClockType.DAY),
+        hours: getOneSecondAbove(currentTime.hours, ClockType.HOUR),
+        minutes: getOneSecondAbove(currentTime.minutes, ClockType.MINUTE),
+        seconds: getOneSecondAbove(currentTime.seconds, ClockType.SECOND)
     };
 }

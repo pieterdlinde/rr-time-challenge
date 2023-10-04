@@ -14,6 +14,7 @@ const Card = ({number, bottomNumber}: CardProps) => {
     const prevNumber = usePrevious(number);
 
     useEffect(() => {
+        setAnimationStateEnabled(false);
         setAnimate(number !== prevNumber)
     }, [number])
 
@@ -22,14 +23,10 @@ const Card = ({number, bottomNumber}: CardProps) => {
         setAnimate(false);
     }
 
-    const endingBottomLayerAnimatino = () => {
-        setAnimationStateEnabled(false);
-    }
-
     return (
         <div className="card">
             <div className="bottom-layer">
-                <span className={`bottom ${animationStateEnabled ? 'animate' : ''}`} onAnimationEnd={endingBottomLayerAnimatino}>{bottomNumber}</span>
+                <span className={`bottom ${animationStateEnabled ? 'animate' : ''}`}>{bottomNumber}</span>
                 <span className="top">{bottomNumber}</span>
             </div>
             <div className="top-layer">

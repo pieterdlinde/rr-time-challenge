@@ -4,7 +4,7 @@ import { getNextGame } from "../helpers/getNextGeoTasticGame";
 import { DoubleNumberChar, Timer, NumberChar, TimerEquals } from "../types/Timer";
 import { TimeDurations } from "../consts/TimeDurations";
 import Card from "./Card";
-import { getOneSecondBelowTimer } from "../helpers/getOneSecondBelow";
+import { getOneSecondAboveTimer } from "../helpers/getOneSecondBelow";
 
 const convertNumberToTwoDigits = (number: number): DoubleNumberChar => {
   const numberString = number.toString().padStart(2, "0").split("");
@@ -66,8 +66,8 @@ const Counter = () => {
     const i = setInterval(() => {
       const difference = getDifferenceInTime();
       if (!TimerEquals(difference, counterDown)) {
-        setCountDown(difference);
-        setSecondCounterDown(getOneSecondBelowTimer(difference));
+        setCountDown(getOneSecondAboveTimer(difference));
+        setSecondCounterDown(difference);
       }
     }, 10);
     return () => clearInterval(i);
