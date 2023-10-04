@@ -1,6 +1,7 @@
 {
   "name": "rr-time-challenge",
   "version": "0.1.0",
+  "homepage": "https://basmulder03.github.io/rr-time-challenge",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -22,7 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +46,7 @@
     ]
   },
   "devDependencies": {
-    "@types/jquery": "^3.5.20"
+    "@types/jquery": "^3.5.20",
+    "gh-pages": "^6.0.0"
   }
 }
