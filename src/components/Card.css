@@ -8,6 +8,10 @@
     src: local('Athletic') url(../fonts/Atheletic/NewAthleticM54-31vz.ttf) format('truetype');
 }
 
+:root {
+    --card-flip-duration: 0.5s;
+}
+
 .card {
     margin: 20px;
     padding: 10px;
@@ -32,7 +36,7 @@
 }
 
 .card .top-layer span.top.animate {
-    animation: flipCard 0.5s forwards linear;
+    animation: flipCard var(--card-flip-duration) forwards linear;
 }
 
 .card span.bottom {
@@ -42,7 +46,7 @@
 
 .card .bottom-layer span.bottom.animate {
     z-index: 1000;
-    animation: flipCardBottom 0.5s forwards linear;
+    animation: flipCardBottom var(--card-flip-duration) forwards linear;
 }
 
 @keyframes flipCard {
