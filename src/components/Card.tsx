@@ -15,11 +15,11 @@ const Card = ({number, bottomNumber}: CardProps) => {
 
     useEffect(() => {
         setAnimate(number !== prevNumber)
-        setTimeout(() => setAnimate(false), 750);
     }, [number])
 
     const endingTopLayerAnimation = () => {
         setAnimationStateEnabled(true)
+        setAnimate(false);
     }
 
     const endingBottomLayerAnimatino = () => {

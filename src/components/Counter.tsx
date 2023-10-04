@@ -38,19 +38,6 @@ const Counter = () => {
         (t % TimeDurations.minute) / TimeDurations.second
       );
 
-      if (seconds === 60) {
-        seconds--;
-        minutes++;
-      }
-      if (minutes === 60) {
-        minutes--;
-        hours++;
-      }
-      if (hours === 24) {
-        hours--;
-        days++;
-      }
-
       if (days < 0) days = 0;
       if (hours < 0) hours = 0;
       if (minutes < 0) minutes = 0;
