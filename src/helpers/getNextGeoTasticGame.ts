@@ -6,23 +6,14 @@ import {
   GameDateWithAwayAndTime,
 } from "../types/GameDate";
 
-
-
 const getAmountOfDaysBetween = (
-  fromDay: DaysOfWeek,
-  toDay: DaysOfWeek
+  currentAmount: number, currentDay: DaysOfWeek, toDay: DaysOfWeek
 ): number => {
-  let amountOfDays = -1;
-  let currentDay = fromDay;
-  Object.keys(DaysOfWeek).forEach(() => {
-    amountOfDays++;
-    if (currentDay === toDay) {
-      return amountOfDays;
-    }
-    currentDay = DaysOfWeekUtil.getNextDay(currentDay);
-});
-  return amountOfDays;
-};
+  if (currentDay !== toDay) {
+    return getAmountOfDaysBetween(++currentAmount, DaysOfWeekUtil.getNextDay(currentDay), toDay);
+  }
+  return currentAmount;
+}
 
 const getLowestDaysAway = (
   gameDates: GameDateWithAway
@@ -41,7 +32,7 @@ const getNextGame = (): Date | null => {
   for (const day of Object.keys(gameDates)) {
     const d = Number.parseInt(day);
     const enumDay = DaysOfWeekUtil.getDayFromIndex(d);
-    const daysAway = getAmountOfDaysBetween(today, enumDay);
+    const daysAway = getAmountOfDaysBetween(0, today, enumDay);
     if (!Object.keys(awayList).includes(day)) {
       awayList[d] = {
         day: DaysOfWeekUtil.getDayFromIndex(d),

@@ -20,11 +20,11 @@ const getOneSecondAbove = (currentTime: DoubleNumberChar, type: ClockType): Doub
         case ClockType.DAY:
             return getNewPositiveNumberFromDouble(currentTime, 9);
         case ClockType.HOUR:
-            return getNewPositiveNumberFromDouble(currentTime, 6);
+            return getNewPositiveNumberFromDouble(currentTime, 5);
         case ClockType.MINUTE:
-            return getNewPositiveNumberFromDouble(currentTime, 6);
+            return getNewPositiveNumberFromDouble(currentTime, 5);
         case ClockType.SECOND:
-            return getNewPositiveNumberFromDouble(currentTime, 6);
+            return getNewPositiveNumberFromDouble(currentTime, 5);
     }
 }
 
