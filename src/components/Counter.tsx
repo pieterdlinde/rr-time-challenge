@@ -4,7 +4,7 @@ import { getNextGame } from "../helpers/getNextGeoTasticGame";
 import { DoubleNumberChar, Timer, NumberChar, TimerEquals } from "../types/Timer";
 import { TimeDurations } from "../consts/TimeDurations";
 import Card from "./Card";
-import { getOneSecondAboveTimer } from "../helpers/getOneSecondBelow";
+import { getOneSecondAboveTimer } from "../helpers/getOneSecondAbove";
 
 const convertNumberToTwoDigits = (number: number): DoubleNumberChar => {
   const numberString = number.toString().padStart(2, "0").split("");

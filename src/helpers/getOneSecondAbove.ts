@@ -11,7 +11,7 @@ const getNewPositiveNumber = (char: NumberChar, resetTo: number): NumberChar => 
 const getNewPositiveNumberFromDouble = (chars: DoubleNumberChar, resetTo: number): DoubleNumberChar => {
     const newSecondNumber = getNewPositiveNumber(chars[1], 9);
     let firstNumber = chars[0];
-    if (newSecondNumber === '9') firstNumber = getNewPositiveNumber(chars[0], resetTo);
+    if (newSecondNumber === '0') firstNumber = getNewPositiveNumber(chars[0], resetTo);
     return [firstNumber, newSecondNumber];
 }
 
@@ -20,11 +20,11 @@ const getOneSecondAbove = (currentTime: DoubleNumberChar, type: ClockType): Doub
         case ClockType.DAY:
             return getNewPositiveNumberFromDouble(currentTime, 9);
         case ClockType.HOUR:
-            return getNewPositiveNumberFromDouble(currentTime, 5);
+            return getNewPositiveNumberFromDouble(currentTime, 6);
         case ClockType.MINUTE:
-            return getNewPositiveNumberFromDouble(currentTime, 5);
+            return getNewPositiveNumberFromDouble(currentTime, 6);
         case ClockType.SECOND:
-            return getNewPositiveNumberFromDouble(currentTime, 5);
+            return getNewPositiveNumberFromDouble(currentTime, 6);
     }
 }
 
