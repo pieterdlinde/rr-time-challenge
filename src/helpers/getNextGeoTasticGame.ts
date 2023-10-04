@@ -14,13 +14,13 @@ const getAmountOfDaysBetween = (
 ): number => {
   let amountOfDays = -1;
   let currentDay = fromDay;
-  for (const _ of Object.keys(DaysOfWeek)) {
+  Object.keys(DaysOfWeek).forEach(() => {
     amountOfDays++;
     if (currentDay === toDay) {
       return amountOfDays;
     }
     currentDay = DaysOfWeekUtil.getNextDay(currentDay);
-  }
+});
   return amountOfDays;
 };
 
