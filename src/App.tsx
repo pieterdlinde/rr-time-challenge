@@ -65,19 +65,23 @@ const SnakeGame = () => {
             // Draw the grid
             for (let i = 0; i < gridSize; i++) {
                 for (let j = 0; j < gridSize; j++) {
-                    ctx.fillStyle = (i + j) % 2 === 0 ? '#f0f0f0' : '#d0d0d0'; // Alternating colors for a blocky grid
+                    ctx.fillStyle = '#111D13';
                     ctx.fillRect(i * cellSize, j * cellSize, cellSize, cellSize);
                 }
             }
 
             // Draw the snake
-            ctx.fillStyle = 'green';
-            snake.forEach((segment) => {
+            snake.forEach((segment, index) => {
+                if(index%2 === 0) {
+                    ctx.fillStyle = '#A1CCA5';
+                } else {
+                    ctx.fillStyle = '#415D43';
+                }
                 ctx.fillRect(segment.x * cellSize, segment.y * cellSize, cellSize, cellSize);
             });
 
             // Draw the food
-            ctx.fillStyle = 'red';
+            ctx.fillStyle = '#4B8D48';
             ctx.fillRect(food.x * cellSize, food.y * cellSize, cellSize, cellSize);
         }
 
