@@ -130,7 +130,8 @@ const SnakeGame = () => {
                 countdown--;
                 setStartTime(new Date());// Update the time
                 if (countdown == 0) {
-                    alert('Game over! You ran out of time! I am sure you have time for one more round.');
+                    let dateOfDeath = new Date;
+                    alert('Game over! You ran out of time! I am sure you have time for one more round. \nTime of death: ' + dateOfDeath.getHours() + ':' + dateOfDeath.getMinutes() + ':' + dateOfDeath.getSeconds());
                     window.location.reload(); // Restart the game
                     return; // Return early to prevent further processing
                 }
@@ -160,7 +161,8 @@ const SnakeGame = () => {
 
             // Check for collisions with the walls
             if (head.x < 0 || head.x > gridSize || head.y < 0 || head.y > gridSize) {
-                alert('Game over! You hit a wall. I am sure you have time for one more round.');
+                let dateOfDeath = new Date;
+                alert('Game over! You hit a wall. I am sure you have time for one more round. \nTime of death: ' + dateOfDeath.getHours() + ':' + dateOfDeath.getMinutes() + ':' + dateOfDeath.getSeconds());
                 window.location.reload(); // Restart the game
                 return; // Return early to prevent further processing
             }
@@ -176,7 +178,8 @@ const SnakeGame = () => {
                 // Check for collisions with the snake itself
                 const collided = snake.some((segment) => segment.x === head.x && segment.y === head.y);
                 if (collided) {
-                    alert('Game over! You collided with yourself. I am sure you have time for one more round.');
+                    let dateOfDeath = new Date;
+                    alert('Game over! You collided with yourself. I am sure you have time for one more round. \nTime of death: ' + dateOfDeath.getHours() + ':' + dateOfDeath.getMinutes() + ':' + dateOfDeath.getSeconds());
                     window.location.reload(); // Restart the game
                     return; // Return early to prevent further processing
                 }
