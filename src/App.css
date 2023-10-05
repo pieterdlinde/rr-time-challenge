@@ -34,10 +34,10 @@ body {
 .digital-watch span {
   padding: 2px;
   display: inline-block;
-  width: 1em;
+  width: .8em;
   text-align: center;
   margin: 5px 5px 5px 5px;
-  font-size: 1em;
+  font-size: .6em;
 }
 
 /* Styling the blinking colon */
@@ -64,4 +64,26 @@ body {
 canvas {
   border: 2px solid #333;
   margin-top: 20px;
+}
+
+.WatchRow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: normal;
+    align-content: normal;
+}
+
+.WatchColumn {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0em 2em 0em 2em;
 }
