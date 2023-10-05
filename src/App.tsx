@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import './App.css';
+import background from "./Images/matrix.gif"
 import { Console, count } from 'console';
 
 let countdown;
@@ -204,6 +205,7 @@ const SnakeGame = () => {
     return (
         <GameContainer>
             <Title>Snake O'Clock</Title>
+            <div className='BgImage'></div>
             <div className="WatchRow">
                 <div className="WatchColumn">
                     <h1>Countdown</h1>

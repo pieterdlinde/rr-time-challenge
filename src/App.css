@@ -11,6 +11,15 @@ body {
   margin: 0;
 }
 
+.BgImage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  opacity: 0.4;
+  background-image: url("Images/matrix.gif"); 
+}
+
 @font-face {
   font-family: 'DIGITALDREAM';
   src: url(./Font/DIGITALDREAM.ttf) format('truetype');
