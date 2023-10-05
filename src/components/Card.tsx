@@ -14,7 +14,7 @@ const Card = ({number, bottomNumber}: CardProps) => {
     useEffect(() => {
         setAnimationStateEnabled(false);
         setAnimate(true)
-    }, [number])
+    }, [bottomNumber])
 
     const endingTopLayerAnimation = () => {
         setAnimationStateEnabled(true)
