@@ -6,6 +6,7 @@ import { Console, count } from 'console';
 
 let countdown;
 let prevTime;
+let hasDied;
 
 // Styled Components
 const GameContainer = styled.div`
@@ -35,6 +36,7 @@ const SnakeGame = () => {
     useEffect(() => {
         countdown = 30;
         prevTime = new Date();
+        hasDied = false;
         setAliveTime(dateTime);
         const canvas = canvasRef.current;
 
@@ -86,7 +88,7 @@ const SnakeGame = () => {
             ctx.fillRect(food.x * cellSize, food.y * cellSize, cellSize, cellSize);
         }
 
-
+        
 
         function handleKeyPress(event: any) {
             switch (event.key) {
@@ -130,6 +132,7 @@ const SnakeGame = () => {
                 countdown--;
                 setStartTime(new Date());// Update the time
                 if (countdown == 0) {
+                    hasDied = true;
                     let dateOfDeath = new Date;
                     alert('Game over! You ran out of time! I am sure you have time for one more round. \nTime of death: ' + dateOfDeath.getHours() + ':' + dateOfDeath.getMinutes() + ':' + dateOfDeath.getSeconds());
                     window.location.reload(); // Restart the game
@@ -139,6 +142,11 @@ const SnakeGame = () => {
         }
 
         function update() {
+
+            if(hasDied){
+                return;
+            }
+
             timerCode();
             // Update snake position based on the direction
             const head = { ...snake[0] };
@@ -161,6 +169,7 @@ const SnakeGame = () => {
 
             // Check for collisions with the walls
             if (head.x < 0 || head.x > gridSize || head.y < 0 || head.y > gridSize) {
+                hasDied = true;
                 let dateOfDeath = new Date;
                 alert('Game over! You hit a wall. I am sure you have time for one more round. \nTime of death: ' + dateOfDeath.getHours() + ':' + dateOfDeath.getMinutes() + ':' + dateOfDeath.getSeconds());
                 window.location.reload(); // Restart the game
@@ -178,6 +187,7 @@ const SnakeGame = () => {
                 // Check for collisions with the snake itself
                 const collided = snake.some((segment) => segment.x === head.x && segment.y === head.y);
                 if (collided) {
+                    hasDied = true;
                     let dateOfDeath = new Date;
                     alert('Game over! You collided with yourself. I am sure you have time for one more round. \nTime of death: ' + dateOfDeath.getHours() + ':' + dateOfDeath.getMinutes() + ':' + dateOfDeath.getSeconds());
                     window.location.reload(); // Restart the game
