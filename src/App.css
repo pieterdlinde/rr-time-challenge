@@ -1,27 +1,103 @@
-.App {
+/* App.css */
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #000;
+  color: #0F0; /* Green color for the digits */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.BgImage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  opacity: 0.4;
+  background-image: url("Images/matrix.gif"); 
+}
+
+@font-face {
+  font-family: 'DIGITALDREAM';
+  src: url(./Font/DIGITALDREAM.ttf) format('truetype');
+}
+
+.digital-watch {
+  /* font-family: 'Courier New', Courier, monospace; */
+  font-family: 'DIGITALDREAM';
+  font-size: 4em;
+  background-color: #000;
+  color: #0f0;
+  padding: 10px;
+  /* border: 5px solid #333;
+  border-radius: 10px; */
+  display: inline-block;
+  text-align: center;
+  /* box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); */
+}
+
+/* Styling the digits */
+.digital-watch span {
+  padding: 2px;
+  display: inline-block;
+  width: .8em;
+  text-align: center;
+  margin: 5px 25px 5px 0px;
+  font-size: .6em;
+}
+
+/* Styling the digits */
+.colon {
+  margin: 5px 0px 5px 0px !important;
+}
+
+/* Styling the blinking colon */
+.digital-watch .colon {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.GameContainer {
   text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.Title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
 }
 
-.App-link {
-  color: #61dafb;
+canvas {
+  border: 2px solid #333;
+  margin-top: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.WatchRow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: normal;
+    align-content: normal;
+}
+
+.WatchColumn {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0em 2em 0em 2em;
 }
